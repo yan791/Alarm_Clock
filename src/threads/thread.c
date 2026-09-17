@@ -250,6 +250,22 @@ thread_sleep (int64_t wakeup_tick)
   thread_block ();
   intr_set_level (old_level);
 }
+void
+thread_awake (int64_t current_tick)
+{
+  while (!list_empty (&sleeping_list))
+    {
+      struct thread *sleeping_thread;
+
+      sleeping_thread = list_entry (list_front (&sleeping_list),struct thread,elem);
+
+      if (sleeping_thread->wakeup_tick > current_tick)
+        break;
+
+      list_pop_front (&sleeping_list);
+      thread_unblock (sleeping_thread);
+    }
+}
 /* Transitions a blocked thread T to the ready-to-run state.
    This is an error if T is not blocked.  (Use thread_yield() to
    make the running thread ready.)
