@@ -254,11 +254,15 @@ thread_sleep (int64_t wakeup_tick)
 void
 thread_awake (int64_t current_tick)
 {
+  ASSERT (intr_get_level () == INTR_OFF);
+
   while (!list_empty (&sleeping_list))
     {
       struct thread *sleeping_thread;
 
-      sleeping_thread = list_entry (list_front (&sleeping_list),struct thread,elem);
+      sleeping_thread = list_entry (list_front (&sleeping_list),
+                                    struct thread,
+                                    elem);
 
       if (sleeping_thread->wakeup_tick > current_tick)
         break;
