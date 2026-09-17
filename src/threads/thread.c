@@ -23,6 +23,8 @@
 /* List of processes in THREAD_READY state, that is, processes
    that are ready to run but not actually running. */
 static struct list ready_list;
+/* Threads bloqueadas aguardando o tick de despertar. */
+static struct list sleeping_list;
 
 /* List of all processes.  Processes are added to this list
    when they are first scheduled and removed when they exit. */
@@ -219,7 +221,35 @@ thread_block (void)
   thread_current ()->status = THREAD_BLOCKED;
   schedule ();
 }
+static bool
+wakeup_tick_less (const struct list_elem *a,const struct list_elem *b,void *aux UNUSED)
+{
+  const struct thread *thread_a;
+  const struct thread *thread_b;
 
+  thread_a = list_entry (a, struct thread, elem);
+  thread_b = list_entry (b, struct thread, elem);
+
+  return thread_a->wakeup_tick < thread_b->wakeup_tick;
+}
+void
+thread_sleep (int64_t wakeup_tick)
+{
+  enum intr_level old_level;
+  struct thread *current;
+
+  ASSERT (!intr_context ());
+
+  old_level = intr_disable ();
+  current = thread_current ();
+
+  current->wakeup_tick = wakeup_tick;
+
+  list_insert_ordered (&sleeping_list,&current->elem,wakeup_tick_less,NULL);
+
+  thread_block ();
+  intr_set_level (old_level);
+}
 /* Transitions a blocked thread T to the ready-to-run state.
    This is an error if T is not blocked.  (Use thread_yield() to
    make the running thread ready.)
