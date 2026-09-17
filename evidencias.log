@@ -122,4 +122,35 @@ i386-elf-gcc -c ../../tests/threads/mlfqs-load-avg.c -o tests/threads/mlfqs-load
 i386-elf-gcc -c ../../tests/threads/mlfqs-recent-1.c -o tests/threads/mlfqs-recent-1.o -m32 -g -msoft-float -O0 -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/mlfqs-recent-1.d
 i386-elf-gcc -c ../../tests/threads/mlfqs-fair.c -o tests/threads/mlfqs-fair.o -m32 -g -msoft-float -O0 -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/mlfqs-fair.d
 i386-elf-gcc -c ../../tests/threads/mlfqs-block.c -o tests/threads/mlfqs-block.o -m32 -g -msoft-float -O0 -fno-stack-protector -nostdinc -I../.. -I../../lib -I../../lib/kernel -Wall -W -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers  -MMD -MF tests/threads/mlfqs-block.d
-i386-elf-ld -melf_i386 -T threads/kernel.lds.s -o kernel.o threads/start.o threads/init.o threads/thread.o threads/switch.o threads/interrupt.o threads/intr-stubs.o threads/synch.o threads/palloc.o threads/malloc.o devices/pit.o devices/timer.o devices/kbd.o devices/vga.o devices/serial.o devices/block.o devices/partition.o devices/ide.o devices/input.o devices/intq.o devices/rtc.o devices/shutdown.o devices/speaker.o lib/debug.o lib/random.o lib/stdio.o lib/stdlib.o lib/string.o lib/arithmetic.o lib/ustar.o lib/kernel/debug.o lib/kernel/list.o lib/kernel/bitmap.o lib/kernel/hash.o lib/kernel/console.o tests/threads/tests.o tests/threads/alarm-wait.o tests/threads/alarm-simultaneous.o tests/threads/alarm-priority.o t
+i386-elf-ld -melf_i386 -T threads/kernel.lds.s -o kernel.o threads/start.o threads/init.o threads/thread.o threads/switch.o threads/interrupt.o threads/intr-stubs.o threads/synch.o threads/palloc.o threads/malloc.o devices/pit.o devices/timer.o devices/kbd.o devices/vga.o devices/serial.o devices/block.o devices/partition.o devices/ide.o devices/input.o devices/intq.o devices/rtc.o devices/shutdown.o devices/speaker.o lib/debug.o lib/random.o lib/stdio.o lib/stdlib.o lib/string.o lib/arithmetic.o lib/ustar.o lib/kernel/debug.o lib/kernel/list.o lib/kernel/bitmap.o lib/kernel/hash.o lib/kernel/console.o tests/threads/tests.o tests/threads/alarm-wait.o tests/threads/alarm-simultaneous.o tests/threads/alarm-priority.o tests/threads/alarm-zero.o tests/threads/alarm-negative.o tests/threads/priority-change.o tests/threads/priority-donate-one.o tests/threads/priority-donate-multiple.o tests/threads/priority-donate-multiple2.o tests/threads/priority-donate-nest.o tests/threads/priority-donate-sema.o tests/threads/priority-donate-lower.o tests/threads/priority-fifo.o tests/threads/priority-preempt.o tests/threads/priority-sema.o tests/threads/priority-condvar.o tests/threads/priority-donate-chain.o tests/threads/mlfqs-load-1.o tests/threads/mlfqs-load-60.o tests/threads/mlfqs-load-avg.o tests/threads/mlfqs-recent-1.o tests/threads/mlfqs-fair.o tests/threads/mlfqs-block.o
+i386-elf-objdump -S kernel.o > kernel.asm
+i386-elf-nm -n kernel.o > kernel.sym
+i386-elf-objcopy -R .note -R .comment -S kernel.o kernel.bin
+i386-elf-gcc -c ../../threads/loader.S -o threads/loader.o -Wa,--gstabs,--32 -nostdinc -I../.. -I../../lib 
+i386-elf-ld -melf_i386 -N -e 0 -Ttext 0x7c00 -o loader.out threads/loader.o
+i386-elf-objdump -S loader.out > loader.asm
+i386-elf-objcopy -S -O binary -j .text loader.out loader.bin
+rm loader.out
+make[1]: Saindo do diretório '/home/yan/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build'
+make: Saindo do diretório '/home/yan/InfrSW/PintOS-Alarm-Clock-yrn/src/threads'
+[?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn[00m$ ^C[?2004l[?2004h[?2004l
+[?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn[00m$ git add .
+[?2004l[?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn[00m$ git commit -m "[7mimplementa despertar das threads pelo tick atual"[27mimplementa despertar das threads pelo tick atual"
+[?2004l[main 6ec82f3] implementa despertar das threads pelo tick atual
+ 3 files changed, 142 insertions(+)
+ create mode 100644 evidencias.log
+[?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn[00m$ git push
+[?2004lEnumerating objects: 12, done.
+Counting objects:   8% (1/12)Counting objects:  16% (2/12)Counting objects:  25% (3/12)Counting objects:  33% (4/12)Counting objects:  41% (5/12)Counting objects:  50% (6/12)Counting objects:  58% (7/12)Counting objects:  66% (8/12)Counting objects:  75% (9/12)Counting objects:  83% (10/12)Counting objects:  91% (11/12)Counting objects: 100% (12/12)Counting objects: 100% (12/12), done.
+Delta compression using up to 4 threads
+Compressing objects:  14% (1/7)Compressing objects:  28% (2/7)Compressing objects:  42% (3/7)Compressing objects:  57% (4/7)Compressing objects:  71% (5/7)Compressing objects:  85% (6/7)Compressing objects: 100% (7/7)Compressing objects: 100% (7/7), done.
+Writing objects:  14% (1/7)Writing objects:  28% (2/7)Writing objects:  42% (3/7)Writing objects:  57% (4/7)Writing objects:  71% (5/7)Writing objects:  85% (6/7)Writing objects: 100% (7/7)Writing objects: 100% (7/7), 3.11 KiB | 3.11 MiB/s, done.
+Total 7 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas:   0% (0/4)[Kremote: Resolving deltas:  25% (1/4)[Kremote: Resolving deltas:  50% (2/4)[Kremote: Resolving deltas:  75% (3/4)[Kremote: Resolving deltas: 100% (4/4)[Kremote: Resolving deltas: 100% (4/4), completed with 4 local objects.[K
+To https://github.com/yan791/Alarm_Clock.git
+   1866470..6ec82f3  main -> main
+[?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn[00m$ [7mmake -C src/threads[27mmake -C src/threads
+[?2004lmake: Entrando no diretório '/home/yan/InfrSW/PintOS-Alarm-Clock-yrn/src/threads'
+cd build && make all
+make[1]: Entrando no diretório '/home/yan/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build'
+i386-elf-gcc -c ../../threads/t

@@ -233,22 +233,14 @@ wakeup_tick_less (const struct list_elem *a,const struct list_elem *b,void *aux 
   return thread_a->wakeup_tick < thread_b->wakeup_tick;
 }
 void
-thread_sleep (int64_t wakeup_tick)
+timer_sleep (int64_t ticks)
 {
-  enum intr_level old_level;
-  struct thread *current;
+  int64_t wakeup_tick;
 
-  ASSERT (!intr_context ());
+  ASSERT (intr_get_level () == INTR_ON);
 
-  old_level = intr_disable ();
-  current = thread_current ();
-
-  current->wakeup_tick = wakeup_tick;
-
-  list_insert_ordered (&sleeping_list,&current->elem,wakeup_tick_less,NULL);
-
-  thread_block ();
-  intr_set_level (old_level);
+  wakeup_tick = timer_ticks () + ticks;
+  thread_sleep (wakeup_tick);
 }
 void
 thread_awake (int64_t current_tick)
