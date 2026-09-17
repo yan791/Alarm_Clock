@@ -93,6 +93,9 @@ timer_sleep (int64_t ticks)
 
   ASSERT (intr_get_level () == INTR_ON);
 
+  if (ticks <= 0)
+    return;
+
   wakeup_tick = timer_ticks () + ticks;
   thread_sleep (wakeup_tick);
 }
