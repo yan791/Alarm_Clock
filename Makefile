@@ -1,3 +1,4 @@
+# Convenience wrapper: the actual Pintos build runs inside src/threads.
 THREADS_DIR = src/threads
 BUILD_DIR = $(THREADS_DIR)/build
 
