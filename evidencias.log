@@ -1191,4 +1191,181 @@ i386-elf-objcopy -R .note -R .comment -S kernel.o kernel.bin
 make[1]: Saindo do diretório '/home/yan/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build'
 make: Saindo do diretório '/home/yan/InfrSW/PintOS-Alarm-Clock-yrn/src/threads'
 [?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn[00m$ [7mcd src/threads/build[27mcd src/threads/build
-[?2004l[?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build[00
+[?2004l[?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build[00m$ [7mpintos -- -q run alarm-single[27mpintos -- -q run alarm-single
+[?2004lqemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/QINUh7iUkr.dsk -m 4 -net none -serial stdio
+Pintos hda1
+Loading............
+Kernel command line: -q run alarm-single
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  51,558,400 loops/s.
+Boot complete.
+Executing 'alarm-single':
+(alarm-single) begin
+(alarm-single) Creating 5 threads to sleep 1 times each.
+(alarm-single) Thread 0 sleeps 10 ticks each time,
+(alarm-single) thread 1 sleeps 20 ticks each time, and so on.
+(alarm-single) If successful, product of iteration count and
+(alarm-single) sleep duration will appear in nondescending order.
+(alarm-single) thread 0: duration=10, iteration=1, product=10
+(alarm-single) thread 1: duration=20, iteration=1, product=20
+(alarm-single) thread 2: duration=30, iteration=1, product=30
+(alarm-single) thread 3: duration=40, iteration=1, product=40
+(alarm-single) thread 4: duration=50, iteration=1, product=50
+(alarm-single) end
+Execution of 'alarm-single' complete.
+Timer: 271 ticks
+Thread: 250 idle ticks, 21 kernel ticks, 0 user ticks
+Console: 986 characters output
+Keyboard: 0 keys pressed
+Powering off...
+[?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build[00m$ pintos -- -q run alarm-single[9Pcd src/threads/build[1Pmake -C src/threadscd /home/yan/InfrSW/PintOS-Alarm-Clock-yrn
+[?2004l[?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn[00m$ git ad [Kd ,[K.
+[?2004l[?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn[00m$ git commit --m [K[K[Km "r[7meforça proteção da lista de threads adormecidas"[27meforça proteção da lista de threads adormecidas"
+[?2004l[main 06b4d6c] reforça proteção da lista de threads adormecidas
+ 2 files changed, 83 insertions(+), 2 deletions(-)
+[?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn[00m$ git push
+[?2004lEnumerating objects: 11, done.
+Counting objects:   9% (1/11)Counting objects:  18% (2/11)Counting objects:  27% (3/11)Counting objects:  36% (4/11)Counting objects:  45% (5/11)Counting objects:  54% (6/11)Counting objects:  63% (7/11)Counting objects:  72% (8/11)Counting objects:  81% (9/11)Counting objects:  90% (10/11)Counting objects: 100% (11/11)Counting objects: 100% (11/11), done.
+Delta compression using up to 4 threads
+Compressing objects:  16% (1/6)Compressing objects:  33% (2/6)Compressing objects:  50% (3/6)Compressing objects:  66% (4/6)Compressing objects:  83% (5/6)Compressing objects: 100% (6/6)Compressing objects: 100% (6/6), done.
+Writing objects:  16% (1/6)Writing objects:  33% (2/6)Writing objects:  50% (3/6)Writing objects:  66% (4/6)Writing objects:  83% (5/6)Writing objects: 100% (6/6)Writing objects: 100% (6/6), 1.07 KiB | 1.07 MiB/s, done.
+Total 6 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas:   0% (0/4)[Kremote: Resolving deltas:  25% (1/4)[Kremote: Resolving deltas:  50% (2/4)[Kremote: Resolving deltas:  75% (3/4)[Kremote: Resolving deltas: 100% (4/4)[Kremote: Resolving deltas: 100% (4/4), completed with 4 local objects.[K
+To https://github.com/yan791/Alarm_Clock.git
+   66b63c9..06b4d6c  main -> main
+[?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn[00m$ [7mcd src/threads/build[27mcd src/threads/build
+[?2004l[?2004h]0;yan@yan-Virtualqemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/GAWhcdV1DO.dsk -m 4 -net none -serial stdio
+Pintos hda1
+Loading............
+Kernel command line: -q run alarm-single
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  124,313,600 loops/s.
+Boot complete.
+Executing 'alarm-single':
+(alarm-single) begin
+(alarm-single) Creating 5 threads to sleep 1 times each.
+(alarm-single) Thread 0 sleeps 10 ticks each time,
+(alarm-single) thread 1 sleeps 20 ticks each time, and so on.
+(alarm-single) If successful, product of iteration count and
+(alarm-single) sleep duration will appear in nondescending order.
+(alarm-single) thread 0: duration=10, iteration=1, product=10
+(alarm-single) thread 1: duration=20, iteration=1, product=20
+(alarm-single) thread 2: duration=30, iteration=1, product=30
+(alarm-single) thread 3: duration=40, iteration=1, product=40
+(alarm-single) thread 4: duration=50, iteration=1, product=50
+(alarm-single) end
+Execution of 'alarm-single' complete.
+Timer: 275 ticks
+Thread: 250 idle ticks, 25 kernel ticks, 0 user ticks
+Console: 987 characters output
+Keyboard: 0 keys pressed
+Powering off...
+Box: ~/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build[00m$ [7mpintos -- -q run alarm-single 2>&1 | tee -a ../../../ev[27m[7mi[27m[7mdencias.log[27m[A]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build[00m$ pintos -- -q run alarm-single 2>&1 | tee -a ../../../evidencias.log
+[?2004lqemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/GAWhcdV1DO.dsk -m 4 -net none -serial stdio
+Pintos hda1
+Loading............
+Kernel command line: -q run alarm-single
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  124,313,600 loops/s.
+Boot complete.
+Executing 'alarm-single':
+(alarm-single) begin
+(alarm-single) Creating 5 threads to sleep 1 times each.
+(alarm-single) Thread 0 sleeps 10 ticks each time,
+(alarm-single) thread 1 sleeps 20 ticks each time, and so on.
+(alarm-single) If successful, product of iteration count and
+(alarm-single) sleep duration will appear in nondescending order.
+(alarm-single) thread 0: duration=10, iteration=1, product=10
+(alarm-single) thread 1: duration=20, iteration=1, product=20
+(alarm-single) thread 2: duration=30, iteration=1, product=30
+(alarm-single) thread 3: duration=40, iteration=1, product=40
+(alarm-single) thread 4: duration=50, iteration=1, product=50
+(alarm-single) end
+Execution of 'alarm-single' complete.
+Timer: 275 ticks
+Thread: 250 idle ticks, 25 kernel ticks, 0 user ticks
+Console: 987 characters output
+Keyboard: 0 keys pressed
+Powering off...
+[?2004h]0;yan@yan-VirtualBox: ~/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build[01;32myan@yan-VirtualBox[00m:[01;34m~/InfrSW/PintOS-Alarm-Clock-yrn/src/threads/build[00m$ exit
+[?2004lexit
+
+Script concluído em 2026-09-17 09:49:34-03:00 [COMMAND_EXIT_CODE="0"]
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/XfLiaZuwI8.dsk -m 4 -net none -serial stdio
+Pintos hda1
+Loading............
+Kernel command line: -q run alarm-simultaneous
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  185,548,800 loops/s.
+Boot complete.
+Executing 'alarm-simultaneous':
+(alarm-simultaneous) begin
+(alarm-simultaneous) Creating 3 threads to sleep 5 times each.
+(alarm-simultaneous) Each thread sleeps 10 ticks each time.
+(alarm-simultaneous) Within an iteration, all threads should wake up on the same tick.
+(alarm-simultaneous) iteration 0, thread 0: woke up after 10 ticks
+(alarm-simultaneous) iteration 0, thread 1: woke up 0 ticks later
+(alarm-simultaneous) iteration 0, thread 2: woke up 0 ticks later
+(alarm-simultaneous) iteration 1, thread 0: woke up 10 ticks later
+(alarm-simultaneous) iteration 1, thread 1: woke up 0 ticks later
+(alarm-simultaneous) iteration 1, thread 2: woke up 0 ticks later
+(alarm-simultaneous) iteration 2, thread 0: woke up 10 ticks later
+(alarm-simultaneous) iteration 2, thread 1: woke up 0 ticks later
+(alarm-simultaneous) iteration 2, thread 2: woke up 0 ticks later
+(alarm-simultaneous) iteration 3, thread 0: woke up 10 ticks later
+(alarm-simultaneous) iteration 3, thread 1: woke up 0 ticks later
+(alarm-simultaneous) iteration 3, thread 2: woke up 0 ticks later
+(alarm-simultaneous) iteration 4, thread 0: woke up 10 ticks later
+(alarm-simultaneous) iteration 4, thread 1: woke up 0 ticks later
+(alarm-simultaneous) iteration 4, thread 2: woke up 0 ticks later
+(alarm-simultaneous) end
+Execution of 'alarm-simultaneous' complete.
+Timer: 284 ticks
+Thread: 250 idle ticks, 34 kernel ticks, 0 user ticks
+Console: 1615 characters output
+Keyboard: 0 keys pressed
+Powering off...
+qemu-system-i386 -device isa-debug-exit -drive format=raw,media=disk,index=0,file=/tmp/GDbsc66P_g.dsk -m 4 -net none -serial stdio
+Pintos hda1
+Loading............
+Kernel command line: -q run alarm-simultaneous
+Pintos booting with 3,968 kB RAM...
+367 pages available in kernel pool.
+367 pages available in user pool.
+Calibrating timer...  76,800,000 loops/s.
+Boot complete.
+Executing 'alarm-simultaneous':
+(alarm-simultaneous) begin
+(alarm-simultaneous) Creating 3 threads to sleep 5 times each.
+(alarm-simultaneous) Each thread sleeps 10 ticks each time.
+(alarm-simultaneous) Within an iteration, all threads should wake up on the same tick.
+(alarm-simultaneous) iteration 0, thread 0: woke up after 10 ticks
+(alarm-simultaneous) iteration 0, thread 1: woke up 0 ticks later
+(alarm-simultaneous) iteration 0, thread 2: woke up 0 ticks later
+(alarm-simultaneous) iteration 1, thread 0: woke up 10 ticks later
+(alarm-simultaneous) iteration 1, thread 1: woke up 0 ticks later
+(alarm-simultaneous) iteration 1, thread 2: woke up 0 ticks later
+(alarm-simultaneous) iteration 2, thread 0: woke up 10 ticks later
+(alarm-simultaneous) iteration 2, thread 1: woke up 0 ticks later
+(alarm-simultaneous) iteration 2, thread 2: woke up 0 ticks later
+(alarm-simultaneous) iteration 3, thread 0: woke up 10 ticks later
+(alarm-simultaneous) iteration 3, thread 1: woke up 0 ticks later
+(alarm-simultaneous) iteration 3, thread 2: woke up 0 ticks later
+(alarm-simultaneous) iteration 4, thread 0: woke up 10 ticks later
+(alarm-simultaneous) iteration 4, thread 1: woke up 0 ticks later
+(alarm-simultaneous) iteration 4, thread 2: woke up 0 ticks later
+(alarm-simultaneous) end
+Execution of 'alarm-simultaneous' complete.
+Timer: 278 ticks
+Thread: 250 idle ticks, 28 kernel ticks, 0 user ticks
+Console: 1614 characters output
+Keyboard: 0 keys pressed
+Powering off...

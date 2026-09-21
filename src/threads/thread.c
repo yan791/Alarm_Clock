@@ -260,9 +260,7 @@ thread_awake (int64_t current_tick)
     {
       struct thread *sleeping_thread;
 
-      sleeping_thread = list_entry (list_front (&sleeping_list),
-                                    struct thread,
-                                    elem);
+      sleeping_thread = list_entry (list_front (&sleeping_list),struct thread,elem);
 
       if (sleeping_thread->wakeup_tick > current_tick)
         break;
